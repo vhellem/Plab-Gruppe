@@ -1,4 +1,4 @@
-__author__ = 'keithd'
+__author__ = 'gruppe7'
 
 # This is the skeleton version of imager.py that is distributed to PLAB-2 students
 
@@ -169,6 +169,51 @@ class Imager():
     def mortun(self,im2,levels=5,scale=0.75):
         return self.tunnel(levels,scale).morph4(im2.tunnel(levels,scale))
 
+
+    #Start of own code
+
+    #ImageEnhance Capabilities, needs working out to return an imager object
+
+    def brightness(self, factor):
+        enh = ImageEnhance.Brightness(self.image)
+        return Imager(image=enh.enhance(factor))
+
+    def greyWhite(self):
+        enh = ImageEnhance.Color(self.image)
+        return Imager(image=enh.enhance(0.0))
+
+    def grey(self, contrast):
+        enh = ImageEnhance.Contrast(self.image)
+        return Imager(image=enh.enhance(contrast))
+
+
+    def blur(self, factor):
+        bl = ImageEnhance.Sharpness(self.image)
+        return Imager(image=bl.enhance(factor).show())
+
+
+    #ImageFilter
+
+
+
+    #Only shifts image
+    def rollImage(self, delta):
+
+        "Roll an image sideways"
+
+        xsize, ysize = self.image.size
+
+        delta = delta % xsize
+        if delta == 0: return self.image
+
+        part1 = self.image.crop((0, 0, delta, ysize))
+        part2 = self.image.crop((delta, 0, xsize, ysize))
+        self.image.paste(part2, (0, 0, xsize-delta, ysize))
+        self.image.paste(part1, (xsize-delta, 0, xsize, ysize))
+        self.image.show()
+
+
+
 ### *********** TESTS ************************
 
 # Note: the default file paths for these examples are for unix!
@@ -201,4 +246,12 @@ def reformat(in_fid, out_ext='jpeg',scalex=1.0,scaley=1.0):
     im = im.scale(scalex,scaley)
     im.dump_image(base,out_ext)
 
+def mytest(fid1='images/einstein.jpeg', fid2="images/einstein.jpeg",steps=5,newsize=250):
+    im1 = Imager(fid1); im2 = Imager(fid2)
+    im1 = im1.resize(newsize,newsize); im2 = im2.resize(newsize,newsize)
 
+    new = im1.greyWhite()
+    new.blur(2)
+
+
+mytest()

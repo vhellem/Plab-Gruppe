@@ -250,7 +250,7 @@ class Imager():
 
 # Note: the default file paths for these examples are for unix!
 
-def ptest1(fid1='images/kdfinger.jpeg', fid2="images/einstein.jpeg",steps=5,newsize=250):
+def ptest1(fid1='images/kdfinger.jpeg', fid2='images/einstein.jpeg',steps=5,newsize=250):
     im1 = Imager(fid1); im2 = Imager(fid2)
     im1 = im1.resize(newsize,newsize); im2 = im2.resize(newsize,newsize)
     roll = im1.morphroll(im2,steps=steps)
@@ -265,7 +265,7 @@ def ptest2(fid1='images/einstein.jpeg',outfid='images/tunnel.jpeg',levels=3,news
     im2.dump_image(outfid)
     return im2
 
-def ptest3(fid1='images/kdfinger.jpeg', fid2="images/einstein.jpeg",newsize=250,levels=4,scale=0.75):
+def ptest3(fid1='images/kdfinger.jpeg', fid2='images/einstein.jpeg',newsize=250,levels=4,scale=0.75):
     im1 = Imager(fid1); im2 = Imager(fid2)
     im1 = im1.resize(newsize,newsize); im2 = im2.resize(newsize,newsize)
     box = im1.mortun(im2,levels=levels,scale=scale)

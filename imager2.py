@@ -225,6 +225,25 @@ class Imager():
         self.image.paste(part1, (xsize-delta, 0, xsize, ysize))
         self.image.show()
 
+    def combineThree(self, im2, im3):
+        """
+        Modifies the first image (self) so that the top third is the first image,
+        the middle third is the second image and the bottom third is the
+        third image.
+        - im2 and im3 are instances of Imager.
+        - Requires same resolution on all images.
+        """
+        split = int(self.ymax / 3)
+        for y in range(split, self.ymax - split):
+            for x in range(self.xmax):
+                self.set_pixel(x, y, im2.get_pixel(x, y))
+        for y in range(self.ymax - split, self.ymax):
+            for x in range(self.xmax):
+                self.set_pixel(x,y, im3.get_pixel(x,y))
+
+        return self
+
+
 
 
 ### *********** TESTS ************************
@@ -258,4 +277,11 @@ def reformat(in_fid, out_ext='jpeg',scalex=1.0,scaley=1.0):
     im = Imager(in_fid)
     im = im.scale(scalex,scaley)
     im.dump_image(base,out_ext)
+
+def combineThreeTest(fid1='images/campus.jpeg', fid2='images/fibonacci.jpeg', fid3='images/donaldduck.jpeg', new_x=450, new_y=450):
+    im1 = Imager(fid1); im2 = Imager(fid2); im3 = Imager(fid3)
+    im1 = im1.resize(new_x, new_y); im2 = im2.resize(new_x, new_y); im3 = im3.resize(new_x, new_y)
+
+    result = im1.combineThree(im2, im3)
+    result.dump_image('images/test.jpeg')
 

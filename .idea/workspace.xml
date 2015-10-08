@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c1894a98-a9bf-474d-808a-5ea1daa20423" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imager2.py" afterPath="$PROJECT_DIR$/imager2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PLab-Gruppe.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,7 +32,7 @@
         <entry file="file://$PROJECT_DIR$/imager2.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.86153847">
-              <caret line="261" column="0" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
+              <caret line="287" column="0" selection-start-line="287" selection-start-column="0" selection-end-line="287" selection-end-column="0" />
               <folding>
                 <element signature="e#108#129#0" expanded="true" />
               </folding>
@@ -431,7 +430,7 @@
     <entry file="file://$PROJECT_DIR$/imager2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.86153847">
-          <caret line="261" column="0" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
+          <caret line="287" column="0" selection-start-line="287" selection-start-column="0" selection-end-line="287" selection-end-column="0" />
           <folding>
             <element signature="e#108#129#0" expanded="true" />
           </folding>

@@ -172,7 +172,7 @@ class Imager():
 
     #Start of own code
 
-    #ImageEnhance Capabilities, needs working out to return an imager object
+    #ImageEnhance Capabilities
 
     def brightness(self, factor):
         enh = ImageEnhance.Brightness(self.image)
@@ -189,7 +189,7 @@ class Imager():
 
     def blur(self, factor):
         bl = ImageEnhance.Sharpness(self.image)
-        return Imager(image=bl.enhance(factor).show())
+        return Imager(image=bl.enhance(factor))
 
 
     #ImageFilter
@@ -285,3 +285,20 @@ def combineThreeTest(fid1='images/campus.jpeg', fid2='images/fibonacci.jpeg', fi
     result = im1.combineThree(im2, im3)
     result.dump_image('images/test.jpeg')
 
+
+def lever(fid1='images/campus.jpeg', fid2='images/fibonacci.jpeg', fid3='images/donaldduck.jpeg', new_x=450, new_y=450):
+    im1 = Imager(fid1); im2 = Imager(fid2); im3 = Imager(fid3)
+
+    im1.filter(ImageFilter.SMOOTH_MORE)
+    im2.filter(ImageFilter.SMOOTH_MORE)
+    im3.filter(ImageFilter.SMOOTH_MORE)
+    im1 = im1.greyWhite()
+    im2 = im2.invert()
+    im3 = im3.brightness(0.5)
+    im1 = im1.blur(0.5)
+    im1 = im1.resize(new_x, new_y); im2 = im2.resize(new_x, new_y); im3 = im3.resize(new_x, new_y)
+
+    result = im1.combineThree(im2, im3)
+    result.dump_image('images/test.jpeg')
+
+lever()

@@ -172,7 +172,7 @@ class Imager():
 
     #Start of own code
 
-    #ImageEnhance Capabilities, needs working out to return an imager object
+    #ImageEnhance Capabilities
 
     def brightness(self, factor):
         enh = ImageEnhance.Brightness(self.image)
@@ -189,7 +189,7 @@ class Imager():
 
     def blur(self, factor):
         bl = ImageEnhance.Sharpness(self.image)
-        return Imager(image=bl.enhance(factor).show())
+        return Imager(image=bl.enhance(factor))
 
 
     #ImageFilter
@@ -250,7 +250,7 @@ class Imager():
 
 # Note: the default file paths for these examples are for unix!
 
-def ptest1(fid1='images/kdfinger.jpeg', fid2="images/einstein.jpeg",steps=5,newsize=250):
+def ptest1(fid1='images/kdfinger.jpeg', fid2='images/einstein.jpeg',steps=5,newsize=250):
     im1 = Imager(fid1); im2 = Imager(fid2)
     im1 = im1.resize(newsize,newsize); im2 = im2.resize(newsize,newsize)
     roll = im1.morphroll(im2,steps=steps)
@@ -265,7 +265,7 @@ def ptest2(fid1='images/einstein.jpeg',outfid='images/tunnel.jpeg',levels=3,news
     im2.dump_image(outfid)
     return im2
 
-def ptest3(fid1='images/kdfinger.jpeg', fid2="images/einstein.jpeg",newsize=250,levels=4,scale=0.75):
+def ptest3(fid1='images/kdfinger.jpeg', fid2='images/einstein.jpeg',newsize=250,levels=4,scale=0.75):
     im1 = Imager(fid1); im2 = Imager(fid2)
     im1 = im1.resize(newsize,newsize); im2 = im2.resize(newsize,newsize)
     box = im1.mortun(im2,levels=levels,scale=scale)
@@ -285,3 +285,20 @@ def combineThreeTest(fid1='images/campus.jpeg', fid2='images/fibonacci.jpeg', fi
     result = im1.combineThree(im2, im3)
     result.dump_image('images/test.jpeg')
 
+
+def lever(fid1='images/campus.jpeg', fid2='images/fibonacci.jpeg', fid3='images/donaldduck.jpeg', new_x=450, new_y=450):
+    im1 = Imager(fid1); im2 = Imager(fid2); im3 = Imager(fid3)
+
+    im1.filter(ImageFilter.SMOOTH_MORE)
+    im2.filter(ImageFilter.SMOOTH_MORE)
+    im3.filter(ImageFilter.SMOOTH_MORE)
+    im1 = im1.greyWhite()
+    im2 = im2.invert()
+    im3 = im3.brightness(0.5)
+    im1 = im1.blur(0.5)
+    im1 = im1.resize(new_x, new_y); im2 = im2.resize(new_x, new_y); im3 = im3.resize(new_x, new_y)
+
+    result = im1.combineThree(im2, im3)
+    result.dump_image('images/test.jpeg')
+
+lever()

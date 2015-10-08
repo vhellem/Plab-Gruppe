@@ -5,7 +5,7 @@ __author__ = 'gruppe7'
 from PIL import Image
 from PIL import ImageFilter
 from PIL import ImageEnhance
-
+from PIL import ImageOps
 
 class Imager():
 
@@ -194,10 +194,23 @@ class Imager():
 
     #ImageFilter
 
+    def filter(self, f):
+        self.image = self.image.filter(f)
 
+    #ImageOps
+
+    def autoContrast(self, cutoff=1):
+        im = ImageOps.autocontrast(self.image, cutoff)
+        im2 = Imager(image=im)
+        return im2
+
+    def invert(self):
+        im = ImageOps.invert(self.image)
+        im2 = Imager(image=im)
+        return im2
 
     #Only shifts image
-    def rollImage(self, delta):
+    def shiftImage(self, delta):
 
         "Roll an image sideways"
 
@@ -246,12 +259,14 @@ def reformat(in_fid, out_ext='jpeg',scalex=1.0,scaley=1.0):
     im = im.scale(scalex,scaley)
     im.dump_image(base,out_ext)
 
-def mytest(fid1='images/einstein.jpeg', fid2="images/einstein.jpeg",steps=5,newsize=250):
+def mytest(fid1='images/einstein.gif', fid2='images/einstein.jpeg', steps=5,newsize=250):
     im1 = Imager(fid1); im2 = Imager(fid2)
     im1 = im1.resize(newsize,newsize); im2 = im2.resize(newsize,newsize)
+    im1.get_image().show()
+    im2 = im1.autoContrast()
 
-    new = im1.greyWhite()
-    new.blur(2)
+    im2.invert().get_image().show()
+
 
 
 mytest()

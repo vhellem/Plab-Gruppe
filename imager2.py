@@ -259,14 +259,3 @@ def reformat(in_fid, out_ext='jpeg',scalex=1.0,scaley=1.0):
     im = im.scale(scalex,scaley)
     im.dump_image(base,out_ext)
 
-def mytest(fid1='images/einstein.gif', fid2='images/einstein.jpeg', steps=5,newsize=250):
-    im1 = Imager(fid1); im2 = Imager(fid2)
-    im1 = im1.resize(newsize,newsize); im2 = im2.resize(newsize,newsize)
-    im1.get_image().show()
-    im2 = im1.autoContrast()
-
-    im2.invert().get_image().show()
-
-
-
-mytest()

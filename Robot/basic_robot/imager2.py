@@ -1,11 +1,7 @@
-__author__ = 'gruppe7'
-
-# This is the skeleton version of imager.py that is distributed to PLAB-2 students
-
 from PIL import Image
 from PIL import ImageFilter
 from PIL import ImageEnhance
-from PIL import ImageOps
+
 
 class Imager():
 
@@ -72,9 +68,9 @@ class Imager():
 
     # The use of Image.eval applies the func to each BAND, independently, if image pixels are RGB tuples.
     def map_image(self,func,image=False):
-        "Apply func to each pixel of the image, returning a new image"
+        # "Apply func to each pixel of the image, returning a new image"
         image = image if image else self.image
-        return Imager(Image.eval(image,func)) # Eval creates a new image, so no need for me to do a copy.
+        return Imager(image=Image.eval(image,func)) # Eval creates a new image, so no need for me to do a copy.
 
     # This applies the function to each RGB TUPLE, returning a new tuple to appear in the new image.  So func
     # must return a 3-tuple if the image has RGB pixels.
@@ -169,99 +165,11 @@ class Imager():
     def mortun(self,im2,levels=5,scale=0.75):
         return self.tunnel(levels,scale).morph4(im2.tunnel(levels,scale))
 
-
-    #Start of own code
-
-    #ImageEnhance Capabilities
-
-    def brightness(self, factor):
-        enh = ImageEnhance.Brightness(self.image)
-        return Imager(image=enh.enhance(factor))
-
-    def greyWhite(self):
-        enh = ImageEnhance.Color(self.image)
-        return Imager(image=enh.enhance(0.0))
-
-    def grey(self, contrast):
-        enh = ImageEnhance.Contrast(self.image)
-        return Imager(image=enh.enhance(contrast))
-
-
-    def blur(self, factor):
-        bl = ImageEnhance.Sharpness(self.image)
-        return Imager(image=bl.enhance(factor))
-
-
-
-    def flipImage(self, deg):
-        self.image = self.image.rotate(deg)
-    #ImageFilter
-
-    def filter(self, f):
-        self.image = self.image.filter(f)
-
-    #ImageOps
-    def manySmallImages(self, n):
-        im = self
-        for i in range(n):
-            im.concat_horiz()
-        return im
-
-
-    def autoContrast(self, cutoff=1):
-        im = ImageOps.autocontrast(self.image, cutoff)
-        im2 = Imager(image=im)
-        return im2
-
-    def invert(self):
-        im = ImageOps.invert(self.image)
-        im2 = Imager(image=im)
-        return im2
-
-    #Only shifts image
-    def shiftImage(self, delta):
-
-        "Roll an image sideways"
-
-        xsize, ysize = self.image.size
-
-        delta = delta % xsize
-        if delta == 0: return self.image
-
-        part1 = self.image.crop((0, 0, delta, ysize))
-        part2 = self.image.crop((delta, 0, xsize, ysize))
-        self.image.paste(part2, (0, 0, xsize-delta, ysize))
-        self.image.paste(part1, (xsize-delta, 0, xsize, ysize))
-        self.image.show()
-
-    def combineThree(self, im2, im3):
-        """
-        Modifies the first image (self) so that the top third is the first image,
-        the middle third is the second image and the bottom third is the
-        third image.
-        - im2 and im3 are instances of Imager.
-        - Requires same resolution on all images.
-        """
-        self.dump_image('images/test0.jpeg')
-        split = int(self.ymax / 3)
-        for y in range(split, self.ymax - split):
-            for x in range(self.xmax):
-                self.set_pixel(x, y, im2.get_pixel(x, y))
-        self.dump_image('images/test1.jpeg')
-        for y in range(self.ymax - split, self.ymax):
-            for x in range(self.xmax):
-                self.set_pixel(x,y, im3.get_pixel(x,y))
-
-        return self
-
-
-
-
 ### *********** TESTS ************************
 
 # Note: the default file paths for these examples are for unix!
 
-def ptest1(fid1='images/kdfinger.jpeg', fid2='images/einstein.jpeg',steps=5,newsize=250):
+def ptest1(fid1='images/kdfinger.jpeg', fid2="images/einstein.jpeg",steps=5,newsize=250):
     im1 = Imager(fid1); im2 = Imager(fid2)
     im1 = im1.resize(newsize,newsize); im2 = im2.resize(newsize,newsize)
     roll = im1.morphroll(im2,steps=steps)
@@ -276,7 +184,7 @@ def ptest2(fid1='images/einstein.jpeg',outfid='images/tunnel.jpeg',levels=3,news
     im2.dump_image(outfid)
     return im2
 
-def ptest3(fid1='images/kdfinger.jpeg', fid2='images/einstein.jpeg',newsize=250,levels=4,scale=0.75):
+def ptest3(fid1='images/kdfinger.jpeg', fid2="images/einstein.jpeg",newsize=250,levels=4,scale=0.75):
     im1 = Imager(fid1); im2 = Imager(fid2)
     im1 = im1.resize(newsize,newsize); im2 = im2.resize(newsize,newsize)
     box = im1.mortun(im2,levels=levels,scale=scale)
@@ -289,30 +197,3 @@ def reformat(in_fid, out_ext='jpeg',scalex=1.0,scaley=1.0):
     im = im.scale(scalex,scaley)
     im.dump_image(base,out_ext)
 
-def combineThreeTest(fid1='images/campus.jpeg', fid2='images/fibonacci.jpeg', fid3='images/donaldduck.jpeg', new_x=450, new_y=450):
-    im1 = Imager(fid1); im2 = Imager(fid2); im3 = Imager(fid3)
-    im1 = im1.resize(new_x, new_y); im2 = im2.resize(new_x, new_y); im3 = im3.resize(new_x, new_y)
-
-    result = im1.combineThree(im2, im3)
-    result.dump_image('images/test.jpeg')
-
-
-def lever(fid1='images/fibonacci.jpeg', fid2='images/campus.jpeg', fid3='images/donaldduck.jpeg', new_x=450, new_y=450):
-    im1 = Imager(fid1); im2 = Imager(fid2); im3 = Imager(fid3)
-
-    im1.filter(ImageFilter.SMOOTH_MORE)
-    im2.filter(ImageFilter.SMOOTH_MORE)
-    im3.filter(ImageFilter.SMOOTH_MORE)
-    im2 = im2.invert()
-    im3 = im3.brightness(0.5)
-    im1 = im1.blur(0.5)
-    im1 = im1.resize(new_x, new_y); im2 = im2.resize(new_x, new_y); im3 = im3.resize(new_x, new_y)
-
-    result = im1.invert()
-    result.flipImage(60)
-    result = result.grey(0.5)
-    result.filter(ImageFilter.EDGE_ENHANCE_MORE)
-    
-    result.dump_image('images/test.jpeg')
-
-lever()

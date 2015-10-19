@@ -5,15 +5,19 @@ class Arbitrator():
 
     def __init__(self, bbcon):
         self.bbcon = bbcon
+        self.chosen_recommendation = None
 
     def choose_action(self):
         recommendations = []
         weights = []
         """ Store data from behaviours """
-        for behaviour in bbcon.behaviours:
+        for behaviour in bbcon.behaviours:  #maybe 'in bbcon.active_behaviours'
             if behaviour.active:
                 recommendations.append(behaviour.recommendation)
                 weights.append(behaviour.weight)
+        return self.scale_and_select()
+
+    def scale_and_select(self, recommendations, weights):
 
         """ Create stochastic weighting scale """
         total = 0
@@ -23,14 +27,23 @@ class Arbitrator():
             cumulative.append(total)
 
         """ Select behaviour based on weighting """
-        choice = random.randrange(0,total)
+        choice = random.uniform(0, total)
         for index in range(len(cumulative)):
             if choice <= cumulative[index]:
-                chosen_recommendation = recommendations[index]
+                self.chosen_recommendation = recommendations[index]
+                break
+        """Assumes recommendations are a tuple with the following data:
+            [0] Rec. for motob 1
+            [1] Rec. for motob 2
+            [2...] Rec for motob [3...]
+            [n] Halt flag (boolean, must be set t/f in behaviour
+        """
+        return self.chosen_recommendation
+        # HOW ARE RECOMMENDATIONS FORMATTED? NEED TO PULL 1 FOR
+        # EACH MOTOB AND A BOOLEAN FOR THE HALT FLAG
 
-        #FIGURE OUT HOW MOTORS ARE HANDLED, AND PUSH RECOMMENDATIONS
-        #TO CORRECT MOTORS
-
+        #FIGURE OUT HOW MOTORS ARE HANDLED, AND PUSH
+        # RECOMMENDATIONS TO CORRECT MOTORS
 
 
 

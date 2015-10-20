@@ -9,14 +9,36 @@ class Behaviour:
         self.motor = motor
 
 
-    def weight(self):
+    def sense_and_act(self):
+        self.updateSensorValues()
 
-    def switchMode(self):
+    def weightProperty(self):
+        return self.deg*self.priority
+
+    def considerSwitchMode(self):
         if self.active:
-            self.active = False
+            self.considerDeactivation()
         else:
-            self.active = True
+            self.considerActivation()
+
+    def considerDeactivation(self):
+        pass
+
+    def considerActivation(self):
+        pass
 
 
     def setMatchDegree(self, d):
         self.deg = d
+
+
+    def update(self):
+        self.considerSwitchMode()
+        if self.active:
+            self.sense_and_act()
+
+    def updateSensorValues(self):
+        pass
+
+
+

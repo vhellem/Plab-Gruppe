@@ -2,7 +2,7 @@ __author__ = 'Vegard'
 
 class Behaviour:
     active = False
-    def __init__(self, bbcon, sensor, motor, pri=1):
+    def __init__(self, bbcon, sensor, motor=[0, 0], pri=1):
         self.active = True
         self.sensor = sensor
         self.priority = pri
@@ -12,20 +12,22 @@ class Behaviour:
     def sense_and_act(self):
         self.updateSensorValues()
 
-    def weightProperty(self):
+    def setWeight(self):
         return self.deg*self.priority
 
-    def considerSwitchMode(self):
+    def considerSwitchMode(self, m):
         if self.active:
-            self.considerDeactivation()
+            self.considerDeactivation(m)
         else:
-            self.considerActivation()
+            self.considerActivation(m)
 
-    def considerDeactivation(self):
-        pass
+    def considerDeactivation(self, m):
+        if m =="D":
+            self.active = False
 
-    def considerActivation(self):
-        pass
+    def considerActivation(self, m):
+        if m=="A":
+            self.active = True
 
 
     def setMatchDegree(self, d):
@@ -33,7 +35,8 @@ class Behaviour:
 
 
     def update(self):
-        self.considerSwitchMode()
+        message = self.bbcon.checkForMessage()
+        self.considerSwitchMode(message)
         if self.active:
             self.sense_and_act()
 

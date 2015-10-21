@@ -19,4 +19,4 @@ class BeScared(Behaviour):
         else:
             self.setMatchDegree(dist/self.range)
         #Kaller bbcon sin oppdateringsfunksjon? Med motorrekommendasjoner og prioritet
-        self.bbcon.getUpdates(self.motor, self.setWeight(), 1)
+        return [self.motor, self.setWeight(), 1)]

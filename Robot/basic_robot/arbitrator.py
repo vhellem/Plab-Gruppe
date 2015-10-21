@@ -1,8 +1,8 @@
+from random import uniform
 import bbcon.py
-import random
 
-class Arbitrator():
 
+class Arbitrator:
     def __init__(self, bbcon):
         self.bbcon = bbcon
         self.chosen_recommendation = None
@@ -11,7 +11,7 @@ class Arbitrator():
         recommendations = []
         weights = []
         """ Store data from behaviours """
-        for behaviour in bbcon.behaviours:  #maybe 'in bbcon.active_behaviours'
+        for behaviour in bbcon.behaviours:  # maybe 'in bbcon.active_behaviours'
             if behaviour.active:
                 recommendations.append(behaviour.recommendation)
                 weights.append(behaviour.weight)
@@ -27,7 +27,7 @@ class Arbitrator():
             cumulative.append(total)
 
         """ Select behaviour based on weighting """
-        choice = random.uniform(0, total)
+        choice = uniform(0, total)
         for index in range(len(cumulative)):
             if choice <= cumulative[index]:
                 self.chosen_recommendation = recommendations[index]
@@ -42,8 +42,5 @@ class Arbitrator():
         # HOW ARE RECOMMENDATIONS FORMATTED? NEED TO PULL 1 FOR
         # EACH MOTOB AND A BOOLEAN FOR THE HALT FLAG
 
-        #FIGURE OUT HOW MOTORS ARE HANDLED, AND PUSH
+        # FIGURE OUT HOW MOTORS ARE HANDLED, AND PUSH
         # RECOMMENDATIONS TO CORRECT MOTORS
-
-
-

@@ -2,11 +2,12 @@ __author__ = 'Vegard'
 
 class Behaviour:
     active = False
-    def __init__(self, bbcon, sensor, motor=[0, 0], pri=1):
+    def __init__(self, bbcon, sensor, pri=1):
         self.active = True
         self.sensor = sensor
         self.priority = pri
         self.motor = motor
+
 
 
     def sense_and_act(self):
@@ -41,7 +42,7 @@ class Behaviour:
             self.sense_and_act()
 
     def updateSensorValues(self):
-        pass
+        return self.sensor.update()
 
 
 

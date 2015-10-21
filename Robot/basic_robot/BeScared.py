@@ -3,8 +3,8 @@ from .behaviour import Behaviour
 class BeScared(Behaviour):
 
     range = 0.3
-    def __init__(self, bbcon, sensor, motor, pri=1):
-        super().__init__(bbcon, sensor, motor, pri)
+    def __init__(self, bbcon, sensor, pri=1):
+        super().__init__(bbcon, sensor, pri)
 
 
     def setRange(self, r):
@@ -19,4 +19,5 @@ class BeScared(Behaviour):
         else:
             self.setMatchDegree(dist/self.range)
         #Kaller bbcon sin oppdateringsfunksjon? Med motorrekommendasjoner og prioritet
-        return [self.motor, self.setWeight(), 1)]
+        self.recommendation= [-1, -1]
+        self.weight = self.setWeight()

@@ -254,6 +254,19 @@ class Imager():
 
         return self
 
+    def red(self):
+        image = self.image
+        x, y = image.size
+        pix = image.load()
+        strongRedCount = 0
+        for i in range(x):
+            for j in range(y):
+
+                if (pix[i, j][0]>100) and (pix[i, j][0] > pix[i, j][1]) and (pix[i, j][0]>pix[i, j][2]):
+                    strongRedCount += 1
+        print(strongRedCount)
+        return strongRedCount>(x+y)/8
+
 
 
 
@@ -315,4 +328,6 @@ def lever(fid1='images/fibonacci.jpeg', fid2='images/campus.jpeg', fid3='images/
     
     result.dump_image('images/test.jpeg')
 
-lever()
+im = Imager('images/kdfinger.jpeg')
+
+im.red()

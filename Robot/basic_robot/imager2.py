@@ -165,6 +165,11 @@ class Imager():
     def mortun(self,im2,levels=5,scale=0.75):
         return self.tunnel(levels,scale).morph4(im2.tunnel(levels,scale))
 
+    def red(self, im=False):
+        image = im if im else self.image
+        print(image.pixels)
+
+
 ### *********** TESTS ************************
 
 # Note: the default file paths for these examples are for unix!

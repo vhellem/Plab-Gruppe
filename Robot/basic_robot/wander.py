@@ -8,12 +8,12 @@ class Wander(Behaviour):
         super().__init__(bbcon, sensor, motor, pri)
 
     def sense_and_act(self):
-        mrec = random_step()
-        self.bbcon.getUpdates(mrec, self.priority, 1)
+        mrec = self.random_step()
+        self.bbcon.getUpdates(mrec, self.priority, 2)
 
 
     def random_step(self):
         from random import choice
-        left = choice([-0.5, -0.25, 0.25, 0.5])
-        right = choice([-0.5, -0.25, 0.25, 0.5])
+        left = choice([-0.5, -0.25, 0,  0.25, 0.5])
+        right = choice([-0.5, -0.25, 0 ,0.25, 0.5])
         return [left, right]

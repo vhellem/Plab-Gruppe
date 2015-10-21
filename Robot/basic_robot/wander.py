@@ -4,12 +4,14 @@ class Wander(Behaviour):
 
 
 
-    def __init__(self, bbcon, sensor, motor, pri=1):
-        super().__init__(bbcon, sensor, motor, pri)
+    def __init__(self, bbcon, sensor, pri=1):
+        self.weight = pri
+        super().__init__(bbcon, sensor, pri)
 
     def sense_and_act(self):
         mrec = self.random_step()
-        self.bbcon.getUpdates(mrec, self.priority, 2)
+        self.recommendation = (mrec, self.priority, 2)
+
 
 
     def random_step(self):

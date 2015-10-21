@@ -6,7 +6,7 @@ class StayInMap(Behaviour):
     def __init__(self, max_pri=9):
         self.sensor = ReflectanceSensors(auto_calibrate=True)
         self.priority = max_pri
-
+        self.active = True
         self.treshold = 150
         self.about_to_crash = False
         self.values = [self.sensor.max_val for _ in range(5)]
@@ -26,7 +26,7 @@ class StayInMap(Behaviour):
             l, r = self.compute_turn()
             self.recommendation =  [l, r]
         else:
-            self.recommendation = False
+            self.recommendation = None
 
     def compute_turn(self):
         direction = 0

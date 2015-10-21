@@ -1,11 +1,15 @@
+from Robot.basic_robot.behaviour import Behaviour
+from Robot.basic_robot.camera import Camera
+from Robot.basic_robot.imager2 import Imager
 __author__ = 'Vegard'
-from .behaviour import Behaviour
-from .imager2 import Imager
+
+
 class AttackRed(Behaviour):
 
 
-    def __init__(self, bbcon, sensor, pri=10):
-        super().__init__(bbcon, sensor, pri)
+    def __init__(self, pri=10):
+        self.sensor = Camera()
+        self.weight = 0
 
     def sense_and_act(self):
         s = 1

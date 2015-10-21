@@ -165,9 +165,18 @@ class Imager():
     def mortun(self,im2,levels=5,scale=0.75):
         return self.tunnel(levels,scale).morph4(im2.tunnel(levels,scale))
 
-    def red(self, im=False):
-        image = im if im else self.image
-        print(image.pixels)
+    def red(self):
+        image = self.image
+        x, y = image.size
+        pix = image.load()
+        strongRedCount = 0
+        for i in range(x):
+            for j in range(y):
+
+                if (pix[i, j][0]>100) and (pix[i, j][0] > pix[i, j][1]) and (pix[i, j][0]>pix[i, j][2]):
+                    strongRedCount += 1
+
+        return (strongRedCount>(x*y)/8)
 
 
 ### *********** TESTS ************************

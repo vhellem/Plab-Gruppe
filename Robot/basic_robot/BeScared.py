@@ -1,10 +1,13 @@
-from .behaviour import Behaviour
+from Robot.basic_robot.ultrasonic import Ultrasonic
 
-class BeScared(Behaviour):
+
+class BeScared:
 
     range = 30
-    def __init__(self, bbcon, sensor, pri=1):
-        super().__init__(bbcon, sensor, pri)
+    def __init__(self, pri=1):
+        self.sensor = Ultrasonic()
+        self.weight = pri
+        self.match = 0
 
 
     def setRange(self, r):
@@ -15,9 +18,8 @@ class BeScared(Behaviour):
     def sense_and_act(self):
         dist = self.updateSensorValues()
         if dist>=self.range:
-            self.setMatchDegree(0)
+            self.weight = 0
         else:
-            self.setMatchDegree(dist/self.range)
-        #Kaller bbcon sin oppdateringsfunksjon? Med motorrekommendasjoner og prioritet
+            self.weight = (dist/self.range)
+
         self.recommendation= [-1, -1, False]
-        self.weight = self.setWeight()

@@ -264,8 +264,8 @@ class Imager():
 
                 if (pix[i, j][0]>100) and (pix[i, j][0] > pix[i, j][1]) and (pix[i, j][0]>pix[i, j][2]):
                     strongRedCount += 1
-        print(strongRedCount)
-        return strongRedCount>(x+y)/8
+
+        return (strongRedCount>(x*y)/8)
 
 
 

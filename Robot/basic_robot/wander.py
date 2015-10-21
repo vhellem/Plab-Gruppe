@@ -10,12 +10,12 @@ class Wander(Behaviour):
 
     def sense_and_act(self):
         mrec = self.random_step()
-        self.recommendation = (mrec, self.priority, 2)
+        self.recommendation = mrec
 
 
 
     def random_step(self):
-        from random import choice
-        left = choice([-0.5, -0.25, 0,  0.25, 0.5])
-        right = choice([-0.5, -0.25, 0 ,0.25, 0.5])
+        from random import uniform
+        left = uniform(-1, 1)
+        right = uniform(-1, 1)
         return [left, right]

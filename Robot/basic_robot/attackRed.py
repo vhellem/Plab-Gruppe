@@ -11,6 +11,8 @@ class AttackRed(Behaviour):
         s = 1
         im = Imager(image=self.sensor.update()).scale(s,s)
         if im.red():
-            self.recommendation = [[1, 1], ]
+            self.recommendation = [1, 1, False]
+            self.weight = 10
         else:
-            self.recommendation = [[], 0]
+            self.recommendation = []
+            self.weight = 0

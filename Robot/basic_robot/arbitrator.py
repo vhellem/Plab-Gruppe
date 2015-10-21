@@ -13,6 +13,7 @@ class Arbitrator:
         """ Store data from behaviours """
         for behaviour in bbcon.behaviours:  # maybe 'in bbcon.active_behaviours'
             if behaviour.active:
+
                 recommendations.append(behaviour.recommendation)
                 weights.append(behaviour.weight)
         return self.scale_and_select()

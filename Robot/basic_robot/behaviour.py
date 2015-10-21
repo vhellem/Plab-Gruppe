@@ -6,7 +6,6 @@ class Behaviour:
         self.active = True
         self.sensor = sensor
         self.priority = pri
-        self.motor = motor
 
 
 

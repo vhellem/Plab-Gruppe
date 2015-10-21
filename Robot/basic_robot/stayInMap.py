@@ -1,5 +1,7 @@
-from .behaviour import Behaviour
-from .reflectance_sensors import ReflectanceSensors
+from Robot.basic_robot.behaviour import Behaviour
+from Robot.basic_robot.reflectance_sensors import ReflectanceSensors
+
+
 class StayInMap(Behaviour):
     def __init__(self, max_pri=9):
         self.sensor = ReflectanceSensors(auto_calibrate=True)
@@ -16,7 +18,7 @@ class StayInMap(Behaviour):
         for reading in self.values:
             if reading <= self.THRESHHOLD:
                 self.about_to_crash = True
-                self.weight = self.max_pri
+                self.weight = self.priority
             self.weight =  0
 
     def get_motor_recommendation(self):
@@ -29,9 +31,9 @@ class StayInMap(Behaviour):
     def compute_turn(self):
         direction = 0
         for i in range(0, 5):
-        if self.values[i] <= self.THRESHHOLD:
-            direction += i
-        return [1/direction, -1/direction]
+            if self.values[i] <= self.THRESHHOLD:
+                direction += i
+            return [1/direction, -1/direction]
 
     def sense_and_act(self):
         self.get_weight()

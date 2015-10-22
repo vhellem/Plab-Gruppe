@@ -3,8 +3,8 @@ from Robot.basic_robot.Sensors.reflectance_sensors import ReflectanceSensors
 
 
 class StayInMap(Behaviour):
-    def __init__(self, max_pri=9):
-        self.sensor = ReflectanceSensors(auto_calibrate=True)
+    def __init__(self, refl ,max_pri=9):
+        self.sensor = refl
         self.priority = max_pri
         self.active = True
         self.treshold = 150
@@ -14,7 +14,7 @@ class StayInMap(Behaviour):
 
     def get_weight(self):
         self.about_to_crash = False
-        self.updateSensorValues()
+        self.values = self.sensor.value
         for reading in self.values:
             if reading <= self.THRESHHOLD:
                 self.about_to_crash = True
@@ -24,7 +24,7 @@ class StayInMap(Behaviour):
     def get_motor_recommendation(self):
         if self.about_to_crash:
             l, r = self.compute_turn()
-            self.recommendation =  [l, r]
+            self.recommendation = [l, r]
         else:
             self.recommendation = None
 

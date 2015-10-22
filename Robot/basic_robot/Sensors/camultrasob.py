@@ -16,3 +16,7 @@ class CamUltra():
             self.image = Imager(image=self.sensor.update()).scale(s,s)
         else:
             self.image = False
+
+    def reset(self):
+        self.ultrasensor.reset()
+        self.camera.reset()

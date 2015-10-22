@@ -14,7 +14,7 @@ class BeScared:
     def setRange(self, r):
         self.range = r
     def updateSensorValues(self):
-        return self.sensor.update().distance
+        return self.sensor.distance
 
     def sense_and_act(self):
         dist = self.updateSensorValues()

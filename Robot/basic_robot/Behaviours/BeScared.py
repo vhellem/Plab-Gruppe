@@ -1,11 +1,11 @@
-from Robot.basic_robot.ultrasonic import Ultrasonic
+from Robot.basic_robot.Sensors.camultrasob import CamUltra
 
 
 class BeScared:
 
     range = 30
     def __init__(self, pri=1):
-        self.sensor = Ultrasonic()
+        self.sensor = CamUltra()
         self.weight = pri
         self.match = 0
 
@@ -13,7 +13,7 @@ class BeScared:
     def setRange(self, r):
         self.range = r
     def updateSensorValues(self):
-        return self.sensor.update()
+        return self.sensor.update().distance
 
     def sense_and_act(self):
         dist = self.updateSensorValues()

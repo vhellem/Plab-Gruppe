@@ -4,8 +4,8 @@ from Robot.basic_robot.Sensors.camultrasob import CamUltra
 class BeScared:
 
     range = 30
-    def __init__(self, pri=1):
-        self.sensor = CamUltra()
+    def __init__(self, sensor, pri=1):
+        self.sensor = sensor
         self.weight = pri
         self.match = 0
         self.active = True

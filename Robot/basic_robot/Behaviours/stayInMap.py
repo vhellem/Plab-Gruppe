@@ -3,8 +3,8 @@ from Robot.basic_robot.Sensors.reflectance_sensors import ReflectanceSensors
 
 
 class StayInMap(Behaviour):
-    def __init__(self, max_pri=9):
-        self.sensor = ReflectanceSensors(auto_calibrate=True)
+    def __init__(self, refl ,max_pri=9):
+        self.sensor = refl
         self.priority = max_pri
         self.active = True
         self.treshold = 150

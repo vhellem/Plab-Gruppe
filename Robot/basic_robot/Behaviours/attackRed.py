@@ -7,8 +7,8 @@ __author__ = 'Vegard'
 class AttackRed(Behaviour):
 
 
-    def __init__(self, pri=10):
-        self.sensor = CamUltra()
+    def __init__(self, cam, pri=10):
+        self.sensor = cam()
         self.weight = 0
         self.active = True
 

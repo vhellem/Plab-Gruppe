@@ -8,6 +8,7 @@ class BeScared:
         self.sensor = CamUltra()
         self.weight = pri
         self.match = 0
+        self.active = True
 
 
     def setRange(self, r):

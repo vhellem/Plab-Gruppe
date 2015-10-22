@@ -9,8 +9,8 @@ class Motob:
         self.value = 0
         self.bbcon = bbcon
 
-    def update(self):
-        self.value = bbcon.arbitrator.chosen_recommendation
+    def update(self, recommendation):
+        self.value = recommendation
         self.operationalize()
 
     def operationalize(self):

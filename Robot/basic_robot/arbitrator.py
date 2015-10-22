@@ -1,7 +1,6 @@
 from random import uniform
 
 
-
 class Arbitrator:
     def __init__(self, bbcon):
         self.bbcon = bbcon
@@ -11,12 +10,12 @@ class Arbitrator:
         recommendations = []
         weights = []
         """ Store data from behaviours """
-        for behaviour in bbcon.behaviours:  # maybe 'in bbcon.active_behaviours'
+        for behaviour in self.bbcon.active_behaviours:
             if behaviour.active:
 
                 recommendations.append(behaviour.recommendation)
                 weights.append(behaviour.weight)
-        return self.scale_and_select()
+        return self.scale_and_select(recommendations, weights)
 
     def scale_and_select(self, recommendations, weights):
 

@@ -15,8 +15,8 @@ __author__ = 'magber'
 class Bbcon:
 
     def __init__(self):
-        self.behaviors = [AttackRed(), BeScared(), StayInMap()]
         self.sensobs = [Camera()]
+        self.behaviors = [AttackRed(), BeScared(), StayInMap()]
         self.motobs = [Motob(self)]
         self.arbitrator = Arbitrator(self)
         self.active_behaviors = []

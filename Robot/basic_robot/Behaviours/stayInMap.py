@@ -1,5 +1,5 @@
-from Robot.basic_robot.behaviour import Behaviour
-from Robot.basic_robot.reflectance_sensors import ReflectanceSensors
+from Robot.basic_robot.Behaviours.behaviour import Behaviour
+from Robot.basic_robot.Sensors.reflectance_sensors import ReflectanceSensors
 
 
 class StayInMap(Behaviour):

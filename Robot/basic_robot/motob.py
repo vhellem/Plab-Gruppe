@@ -1,5 +1,4 @@
-from Robot.basic_robot import motors
-import bbcon.py
+from Robot.basic_robot.Sensors import motors
 
 __author__ = 'edvardvb'
 

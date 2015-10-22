@@ -1,5 +1,5 @@
 from random import uniform
-import bbcon.py
+
 
 
 class Arbitrator:

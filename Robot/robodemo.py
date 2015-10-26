@@ -2,12 +2,11 @@ from time import sleep
 import random
 
 import imager2 as IMR
-from Robot.basic_robot.Sensors.reflectance_sensors import ReflectanceSensors
-from .camera import Camera
-from .motors import Motors
-from .ultrasonic import Ultrasonic
-from .zumo_button import ZumoButton
-
+from reflectance_sensors import ReflectanceSensors
+from camera import Camera
+from motors import Motors
+from ultrasonic import Ultrasonic
+from zumo_button import ZumoButton
 
 
 ## BE SURE TO RUN THESE DEMOS ON THE FLOOR or to have plenty of people guarding
@@ -18,6 +17,7 @@ from .zumo_button import ZumoButton
 def dancer():
     ZumoButton().wait_for_press()
     m = Motors()
+    print('hei')
     m.forward(.2,3)
     m.backward(.2,3)
     m.right(.5,3)
@@ -25,6 +25,7 @@ def dancer():
     m.backward(.3,2.5)
     m.set_value([.5,.1],10)
     m.set_value([-.5,-.1],10)
+    print('hei2')
 
 
 # This tests the UV (distance) sensors.  The robot moves forward to within 10 cm of the nearest obstacle.  It

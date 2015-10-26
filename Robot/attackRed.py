@@ -1,10 +1,7 @@
-from Robot.basic_robot.Behaviours.behaviour import Behaviour
-from Robot.basic_robot.Sensors.camultrasob import CamUltra
-
 __author__ = 'Vegard'
 
 
-class AttackRed(Behaviour):
+class AttackRed():
 
 
     def __init__(self, cam, pri=10):
@@ -20,6 +17,8 @@ class AttackRed(Behaviour):
             if im.red():
                 self.recommendation = [1, 1, False]
                 self.weight = 10
+            self.recommendation = []
+            self.weight = 0
         else:
             self.recommendation = []
             self.weight = 0

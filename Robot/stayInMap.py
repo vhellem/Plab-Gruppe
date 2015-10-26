@@ -30,7 +30,7 @@ class StayInMap():
         for i in range(0, 5):
             if self.values[i] <= self.treshold:
                 direction += i
-            return [1/direction, -1/direction]
+        return [1/direction, -1/direction]
 
     def sense_and_act(self):
         self.get_weight()

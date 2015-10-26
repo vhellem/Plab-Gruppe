@@ -2,7 +2,7 @@ from time import sleep
 import random
 
 import imager2 as IMR
-from Robot.reflectance_sensors import ReflectanceSensors
+from .reflectance_sensors import ReflectanceSensors
 from .camera import Camera
 from .motors import Motors
 from .ultrasonic import Ultrasonic

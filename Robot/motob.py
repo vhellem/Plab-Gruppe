@@ -1,4 +1,4 @@
-from Robot import motors
+import motors
 
 __author__ = 'edvardvb'
 

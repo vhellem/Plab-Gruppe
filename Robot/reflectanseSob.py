@@ -1,4 +1,4 @@
-from Robot.reflectance_sensors import ReflectanceSensors
+from reflectance_sensors import ReflectanceSensors
 
 __author__ = 'Vegard'
 

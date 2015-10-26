@@ -19,7 +19,7 @@ class AttackRed():
             im.dump_image("test.jpeg")
             if im.red():
                 self.recommendation = [1, 1, False]
-                self.weight = 10
+                self.weight = 100
             else:
                 self.recommendation = []
                 self.weight = 0

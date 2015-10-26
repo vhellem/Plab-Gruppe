@@ -15,7 +15,9 @@ class BeScared:
         return self.sensor.distance
 
     def sense_and_act(self):
+        print('BeScared sensing')
         dist = self.updateSensorValues()
+        print('dist = ', dist)
         if dist>=self.range:
             self.weight = 0
         else:

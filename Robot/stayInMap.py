@@ -33,5 +33,6 @@ class StayInMap():
         return [1/direction, -1/direction]
 
     def sense_and_act(self):
+        print('StayInMap senses and acts')
         self.get_weight()
         self.get_motor_recommendation()

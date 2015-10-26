@@ -10,9 +10,12 @@ class AttackRed():
         self.active = True
 
     def sense_and_act(self):
+        print('AttackRed updating')
         s = 1
         im = self.sensor.image
+        print('Photo taken in AttackRed')
         if im:
+            print('Photo exists')
             im.dump_image("test.jpeg")
             if im.red():
                 self.recommendation = [1, 1, False]
@@ -20,5 +23,6 @@ class AttackRed():
             self.recommendation = []
             self.weight = 0
         else:
+            print('Photo does not exist')
             self.recommendation = []
             self.weight = 0

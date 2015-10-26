@@ -41,7 +41,7 @@ class Bbcon:
         for sensob in self.sensobs:
             sensob.update()
         for behavior in self.behaviors:
-            behavior.update()
+            behavior.sense_and_act()
         recommendations = self.arbitrator.choose_action()
         for motob in self.motobs:
             motob.update(recommendations)

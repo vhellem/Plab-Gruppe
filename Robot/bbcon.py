@@ -19,10 +19,10 @@ class Bbcon:
         cam = CamUltra()
         ref = ReflectanceSob()
         self.sensobs = [cam, ref]
-        self.behaviours = [AttackRed(cam), BeScared(cam), StayInMap(ref), Wander()]
+        self.active_behaviours = [AttackRed(cam), BeScared(cam), StayInMap(ref), Wander()]
         self.motobs = [Motob(self)]
         self.arbitrator = Arbitrator(self)
-        self.active_behaviours = []
+        #self.active_behaviours = []
         self.inactive_behaviours = []
 
     def activate_behaviour(self, behaviour):

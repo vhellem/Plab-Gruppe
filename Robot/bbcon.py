@@ -38,17 +38,22 @@ class Bbcon:
             self.inactive_behaviours.append(behaviour)
 
     def r(self):
-        print('Updating sensors')
-        for sensob in self.sensobs:
-            sensob.update()
-        print('Updating behaviours')
-        for behaviour in self.active_behaviours:
-            behaviour.sense_and_act()
-        recommendations = self.arbitrator.choose_action()
-        print('Updating motobs')
-        for motob in self.motobs:
-            motob.update(recommendations)
-        print('Sleep for 0.5 sec')
-        time.sleep(0.5)
-        # for sensob in self.sonsobs:
-        #     sensob.reset()
+       while True:
+            print('Updating sensors')
+            for sensob in self.sensobs:
+                sensob.update()
+            print('Updating behaviours')
+            for behaviour in self.active_behaviours:
+                behaviour.sense_and_act()
+            recommendations = self.arbitrator.choose_action()
+            print('Updating motobs')
+            for motob in self.motobs:
+                motob.update(recommendations)
+            if recommendations[-1] == False:
+                print('=== HALTING ===')
+                break
+            print('=============')
+            print('Step complete')
+            print('=============')
+            # for sensob in self.sonsobs:
+            #     sensob.reset()

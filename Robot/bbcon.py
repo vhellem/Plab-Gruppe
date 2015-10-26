@@ -40,7 +40,7 @@ class Bbcon:
     def run_one_timestep(self):
         for sensob in self.sensobs:
             sensob.update()
-        for behaviour in self.behaviours:
+        for behaviour in self.active_behaviours:
             behaviour.sense_and_act()
         recommendations = self.arbitrator.choose_action()
         for motob in self.motobs:

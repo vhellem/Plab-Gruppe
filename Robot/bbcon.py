@@ -19,29 +19,29 @@ class Bbcon:
         cam = CamUltra()
         ref = ReflectanceSob()
         self.sensobs = [cam, ref]
-        self.behaviors = [AttackRed(cam), BeScared(cam), StayInMap(ref), Wander()]
+        self.behaviours = [AttackRed(cam), BeScared(cam), StayInMap(ref), Wander()]
         self.motobs = [Motob(self)]
         self.arbitrator = Arbitrator(self)
-        self.active_behaviors = []
-        self.inactive_behaviors = []
+        self.active_behaviours = []
+        self.inactive_behaviours = []
 
-    def activate_behavior(self, behavior):
-        if behavior not in self.active_behaviors:
-            self.active_behaviors.append(behavior)
-        if behavior in self.inactive_behaviors:
-            self.inactive_behaviors.remove(behavior)
+    def activate_behaviour(self, behaviour):
+        if behaviour not in self.active_behaviours:
+            self.active_behaviours.append(behaviour)
+        if behaviour in self.inactive_behaviours:
+            self.inactive_behaviours.remove(behaviour)
 
-    def deactivate_behavior(self, behavior):
-        if behavior in self.active_behaviors:
-            self.active_behaviors.remove(behavior)
-        if behavior not in self.inactive_behaviors:
-            self.inactive_behaviors.append(behavior)
+    def deactivate_behaviour(self, behaviour):
+        if behaviour in self.active_behaviours:
+            self.active_behaviours.remove(behaviour)
+        if behaviour not in self.inactive_behaviours:
+            self.inactive_behaviours.append(behaviour)
 
-    def r(self):
+    def run_one_timestep(self):
         for sensob in self.sensobs:
             sensob.update()
-        for behavior in self.behaviors:
-            behavior.sense_and_act()
+        for behaviour in self.behaviours:
+            behaviour.sense_and_act()
         recommendations = self.arbitrator.choose_action()
         for motob in self.motobs:
             motob.update(recommendations)

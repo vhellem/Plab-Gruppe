@@ -14,7 +14,7 @@ class Arbitrator:
             if behaviour.active and len(behaviour.recommendation) > 0:
                 recommendations.append(behaviour.recommendation)
                 weights.append(behaviour.weight)
-            print(behaviour)
+                print(behaviour)
         print(recommendations)
         print(weights)
         return self.scale_and_select(recommendations, weights)
@@ -40,6 +40,7 @@ class Arbitrator:
             [2...] Rec for motob [3...]
             [n] Halt flag (boolean, must be set t/f in behaviour
         """
+        print(chosen_recommendation)
         return chosen_recommendation
         # HOW ARE RECOMMENDATIONS FORMATTED? NEED TO PULL 1 FOR
         # EACH MOTOB AND A BOOLEAN FOR THE HALT FLAG

@@ -37,7 +37,7 @@ class Bbcon:
         if behaviour not in self.inactive_behaviours:
             self.inactive_behaviours.append(behaviour)
 
-    def run_one_timestep(self):
+    def r(self):
         for sensob in self.sensobs:
             sensob.update()
         for behaviour in self.active_behaviours:

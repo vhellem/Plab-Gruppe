@@ -17,6 +17,7 @@ from zumo_button import ZumoButton
 def dancer():
     ZumoButton().wait_for_press()
     m = Motors()
+    print('hei')
     m.forward(.2,3)
     m.backward(.2,3)
     m.right(.5,3)
@@ -24,6 +25,7 @@ def dancer():
     m.backward(.3,2.5)
     m.set_value([.5,.1],10)
     m.set_value([-.5,-.1],10)
+    print('hei2')
 
 
 # This tests the UV (distance) sensors.  The robot moves forward to within 10 cm of the nearest obstacle.  It

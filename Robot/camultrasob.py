@@ -13,7 +13,7 @@ class CamUltra():
         self.distance = self.ultrasensor.update()
         if self.distance<self.range:
             s = 1
-            self.image = Imager(image=self.sensor.update()).scale(s,s)
+            self.image = Imager(image=self.camera.update()).scale(s,s)
         else:
             self.image = False
 

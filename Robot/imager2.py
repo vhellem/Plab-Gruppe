@@ -168,12 +168,13 @@ class Imager():
     def red(self):
         image = self.image
         x, y = image.size
+
         pix = image.load()
         strongRedCount = 0
         for i in range(x):
             for j in range(y):
 
-                if (pix[i, j][0]>100) and (pix[i, j][0] > pix[i, j][1]) and (pix[i, j][0]>pix[i, j][2]):
+                if (pix[i, j][0] > pix[i, j][1]) and (pix[i, j][0]>pix[i, j][2]) and pix[j, j][0]>60:
                     strongRedCount += 1
 
         return (strongRedCount>(x*y)/8)
@@ -210,4 +211,3 @@ def reformat(in_fid, out_ext='jpeg',scalex=1.0,scaley=1.0):
     im = Imager(in_fid)
     im = im.scale(scalex,scaley)
     im.dump_image(base,out_ext)
-

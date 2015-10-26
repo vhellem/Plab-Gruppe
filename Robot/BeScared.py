@@ -21,6 +21,6 @@ class BeScared:
         if dist>=self.range:
             self.weight = 0
         else:
-            self.weight = (dist/self.range)
+            self.weight = 6
 
         self.recommendation= [-1, -1, False]

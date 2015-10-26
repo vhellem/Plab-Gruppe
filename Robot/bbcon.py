@@ -7,8 +7,8 @@ from camera import Camera
 from arbitrator import Arbitrator
 from motob import Motob
 from camultrasob import CamUltra
-from reflectanseSob import ReflectanceSob
 from wander import Wander
+from ReflectanceSob import ReflectanceSob
 
 __author__ = 'magber'
 

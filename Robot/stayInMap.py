@@ -13,7 +13,7 @@ class StayInMap():
         self.about_to_crash = False
         self.values = self.sensor.value
         for reading in self.values:
-            if reading <= self.THRESHHOLD:
+            if reading <= self.treshold:
                 self.about_to_crash = True
                 self.weight = self.priority
             self.weight =  0
@@ -28,7 +28,7 @@ class StayInMap():
     def compute_turn(self):
         direction = 0
         for i in range(0, 5):
-            if self.values[i] <= self.THRESHHOLD:
+            if self.values[i] <= self.treshold:
                 direction += i
             return [1/direction, -1/direction]
 

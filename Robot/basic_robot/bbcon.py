@@ -1,13 +1,11 @@
-from Robot.basic_robot.Behaviours.BeScared import BeScared
-from Robot.basic_robot.Behaviours.attackRed import AttackRed
-from Robot.basic_robot.Behaviours.stayInMap import StayInMap
+import time
 
-from Robot.basic_robot.Sensors.camera import Camera
-
+from Robot.basic_robot.BeScared import BeScared
+from Robot.basic_robot.attackRed import AttackRed
+from Robot.basic_robot.stayInMap import StayInMap
+from Robot.basic_robot.camera import Camera
 from Robot.basic_robot.arbitrator import Arbitrator
 from Robot.basic_robot.motob import Motob
-
-import time
 
 __author__ = 'magber'
 

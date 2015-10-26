@@ -1,6 +1,3 @@
-from Robot.basic_robot.Sensors.camultrasob import CamUltra
-
-
 class BeScared:
 
     range = 30

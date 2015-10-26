@@ -1,5 +1,4 @@
-from Robot.basic_robot.Behaviours.behaviour import Behaviour
-from Robot.basic_robot.Sensors.camultrasob import CamUltra
+from Robot.basic_robot.behaviour import Behaviour
 
 __author__ = 'Vegard'
 

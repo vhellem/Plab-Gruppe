@@ -6,7 +6,7 @@ class CamUltra():
 
     def __init__(self):
         self.camera = Camera()
-        self.range = 300
+        self.range = 30
         self.ultrasensor = Ultrasonic()
 
     def update(self):

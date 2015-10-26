@@ -5,7 +5,7 @@ __author__ = 'Vegard'
 
 class ReflectanceSob:
     def __init__(self):
-        self.sensor = ReflectanceSensors(auto_calibrate=True)
+        self.sensor = ReflectanceSensors(auto_calibrate=False)
         self.max_val = self.sensor.max_val
 
     def update(self):

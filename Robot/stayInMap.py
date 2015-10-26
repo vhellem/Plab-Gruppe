@@ -1,5 +1,4 @@
 
-
 class StayInMap():
     def __init__(self, refl ,max_pri=9):
         self.sensor = refl

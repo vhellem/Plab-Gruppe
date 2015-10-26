@@ -6,6 +6,9 @@ from stayInMap import StayInMap
 from camera import Camera
 from arbitrator import Arbitrator
 from motob import Motob
+from camultrasob import CamUltra
+from reflectanseSob import ReflectanceSob
+from wander import Wander
 
 __author__ = 'magber'
 
@@ -13,8 +16,10 @@ __author__ = 'magber'
 class Bbcon:
 
     def __init__(self):
-        self.sensobs = [Camera()]
-        self.behaviors = [AttackRed(), BeScared(), StayInMap()]
+        cam = CamUltra()
+        ref = ReflectanceSob()
+        self.sensobs = [cam, ref]
+        self.behaviors = [AttackRed(cam), BeScared(cam), StayInMap(ref), Wander()]
         self.motobs = [Motob(self)]
         self.arbitrator = Arbitrator(self)
         self.active_behaviors = []

@@ -17,6 +17,8 @@ class AttackRed():
             if im.red():
                 self.recommendation = [1, 1, False]
                 self.weight = 10
+            self.recommendation = []
+            self.weight = 0
         else:
             self.recommendation = []
             self.weight = 0

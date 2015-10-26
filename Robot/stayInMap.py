@@ -32,7 +32,9 @@ class StayInMap():
         for i in range(0, 5):
             if self.values[i] <= self.treshold:
                 direction += 1
+
         return [(1/direction), (-1/direction)]
+
 
     def sense_and_act(self):
         print('StayInMap senses and acts')

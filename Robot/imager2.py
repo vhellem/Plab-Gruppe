@@ -166,19 +166,18 @@ class Imager():
         return self.tunnel(levels,scale).morph4(im2.tunnel(levels,scale))
 
     def red(self):
-        image = self.image
+        image = ImageEnhance.Contrast(self.image).enhance(10)
         x, y = image.size
-
         pix = image.load()
-        strongRedCount = 0
-        for i in range(x):
-            for j in range(y):
+        sumR = 0
+        for i in range(30, x-30, 3):
+            for j in range(20, y-20, 3):
 
+                sumR += pix[i, j][0]
 
-                if (pix[i, j][0] > pix[i, j][1]+30) and (pix[i, j][0]>30+pix[i, j][2]) and pix[j, j][0]>60:
-                    strongRedCount += 1
-        print(strongRedCount)
-        return (strongRedCount>(x*y)/8)
+        factor = sumR/(x*y)
+        print(factor)
+        return factor>6
 
 
 ### *********** TESTS ************************
@@ -214,5 +213,7 @@ def reformat(in_fid, out_ext='jpeg',scalex=1.0,scaley=1.0):
     im.dump_image(base,out_ext)
 
 
-im = Imager("test.jpeg")
+im = Imager("testIkkeRød.jpeg")
+im2 = Imager("testmedRød.jpeg")
 im.red()
+im2.red()

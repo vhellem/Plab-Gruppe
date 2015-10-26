@@ -1,9 +1,7 @@
-from Robot.basic_robot.behaviour import Behaviour
-
 __author__ = 'Vegard'
 
 
-class AttackRed(Behaviour):
+class AttackRed():
 
 
     def __init__(self, cam, pri=10):

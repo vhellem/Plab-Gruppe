@@ -1,7 +1,5 @@
-from Robot.basic_robot.behaviour import Behaviour
 
-class Wander(Behaviour):
-
+class Wander():
 
 
     def __init__(self, pri=1):

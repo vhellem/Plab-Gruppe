@@ -1,7 +1,6 @@
-from Robot.basic_robot.behaviour import Behaviour
 
 
-class StayInMap(Behaviour):
+class StayInMap():
     def __init__(self, refl ,max_pri=9):
         self.sensor = refl
         self.priority = max_pri

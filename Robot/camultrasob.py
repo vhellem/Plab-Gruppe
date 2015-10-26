@@ -1,6 +1,6 @@
-from Robot.basic_robot.camera import Camera
-from Robot.basic_robot.ultrasonic import Ultrasonic
-from Robot.basic_robot.imager2 import Imager
+from Robot.camera import Camera
+from Robot.ultrasonic import Ultrasonic
+from Robot.imager2 import Imager
 
 class CamUltra():
 

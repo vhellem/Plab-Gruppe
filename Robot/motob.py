@@ -1,4 +1,4 @@
-from Robot.basic_robot import motors
+from Robot import motors
 
 __author__ = 'edvardvb'
 

@@ -8,6 +8,7 @@ class Wander():
 
 
     def sense_and_act(self):
+        print('Wander senses and acts')
         mrec = self.random_step()
         self.recommendation = mrec
 

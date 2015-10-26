@@ -10,10 +10,13 @@ class CamUltra():
         self.ultrasensor = Ultrasonic()
 
     def update(self):
+        print('Updating CamUltra')
         self.distance = self.ultrasensor.update()
+        print('dist = ', self.distance)
         if self.distance<self.range:
+            print('Taking a picture in CamUltra')
             s = 1
-            self.image = Imager(image=self.camera.update()).scale(s,s)
+            self.image = Imager(image=self.camera.update())
         else:
             self.image = False
 

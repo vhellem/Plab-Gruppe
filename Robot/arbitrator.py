@@ -6,6 +6,7 @@ class Arbitrator:
         self.bbcon = bbcon
 
     def choose_action(self):
+        print('Choosing action')
         recommendations = []
         weights = []
         """ Store data from behaviours """
@@ -20,7 +21,7 @@ class Arbitrator:
         return self.scale_and_select(recommendations, weights)
 
     def scale_and_select(self, recommendations, weights):
-
+        print('Scaling and selecting')
         """ Create stochastic weighting scale """
         total = 0
         cumulative = []

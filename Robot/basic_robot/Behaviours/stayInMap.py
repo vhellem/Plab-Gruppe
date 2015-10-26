@@ -24,9 +24,9 @@ class StayInMap(Behaviour):
     def get_motor_recommendation(self):
         if self.about_to_crash:
             l, r = self.compute_turn()
-            self.recommendation = [l, r]
+            self.recommendation = [l, r, False]
         else:
-            self.recommendation = None
+            self.recommendation = []
 
     def compute_turn(self):
         direction = 0

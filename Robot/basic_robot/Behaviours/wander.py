@@ -19,4 +19,4 @@ class Wander(Behaviour):
         from random import uniform
         left = uniform(-1, 1)
         right = uniform(-1, 1)
-        return [left, right]
+        return [left, right, False]

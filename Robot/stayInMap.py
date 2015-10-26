@@ -28,12 +28,11 @@ class StayInMap():
             self.recommendation = []
 
     def compute_turn(self):
-        direction = 0
-        for i in range(0, 5):
-            if self.values[i] <= self.treshold:
-                direction += 1
+        if self.values[0]<= self.treshold or self.values[1]<=self.treshold:
+            return (0.9, -0.6)
 
-        return [(1/direction), (-1/direction)]
+        else:
+            return (-0.6, -0.9)
 
 
     def sense_and_act(self):

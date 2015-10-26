@@ -16,7 +16,7 @@ class CamUltra():
         if self.distance<self.range:
             print('Taking a picture in CamUltra')
             s = 1
-            self.image = Imager(image=self.camera.update()).scale(s,s)
+            self.image = Imager(image=self.camera.update())
         else:
             self.image = False
 

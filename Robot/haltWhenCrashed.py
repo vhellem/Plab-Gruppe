@@ -25,5 +25,4 @@ class HaltWhenCrashed:
             self.weight = 0
             self.recommendation= []
         else:
-            self.weight = 600
             self.recommendation= [0, 0, True]

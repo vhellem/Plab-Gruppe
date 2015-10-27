@@ -9,7 +9,8 @@ from motob import Motob
 from camultrasob import CamUltra
 from wander import Wander
 from ReflectanceSob import ReflectanceSob
-from zumo_button.py import wait_for_press
+from zumo_button import Zumobutton
+from haltWhenCrashed import HaltWhenCrashed
 
 __author__ = 'magber'
 
@@ -20,7 +21,7 @@ class Bbcon:
         cam = CamUltra()
         ref = ReflectanceSob()
         self.sensobs = [cam, ref]
-        self.active_behaviours = [AttackRed(cam), BeScared(cam), StayInMap(ref), Wander()]
+        self.active_behaviours = [AttackRed(cam), BeScared(cam), StayInMap(ref), Wander(), HaltWhenCrashed(cam)]
         self.motobs = [Motob(self)]
         self.arbitrator = Arbitrator(self)
         #self.active_behaviours = []
@@ -60,7 +61,8 @@ class Bbcon:
             #     sensob.reset()
 
     def r(self):
-        wait_for_press()
+        z = Zumobutton()
+        z.wait_for_press()
         halted = False
         while not halted:
             halted = self.one_timestep()

@@ -9,6 +9,7 @@ from motob import Motob
 from camultrasob import CamUltra
 from wander import Wander
 from ReflectanceSob import ReflectanceSob
+from zumo_button.py import wait_for_press
 
 __author__ = 'magber'
 
@@ -37,23 +38,31 @@ class Bbcon:
         if behaviour not in self.inactive_behaviours:
             self.inactive_behaviours.append(behaviour)
 
-    def r(self):
-       while True:
-            print('Updating sensors')
-            for sensob in self.sensobs:
-                sensob.update()
-            print('Updating behaviours')
-            for behaviour in self.active_behaviours:
-                behaviour.sense_and_act()
-            recommendations = self.arbitrator.choose_action()
-            print('Updating motobs')
-            for motob in self.motobs:
-                motob.update(recommendations)
-            if recommendations[-1] == False:
-                print('=== HALTING ===')
-                break
-            print('=============')
-            print('Step complete')
-            print('=============')
+    def one_timestep(self):
+        print('Updating sensors')
+        for sensob in self.sensobs:
+            sensob.update()
+        print('Updating behaviours')
+        for behaviour in self.active_behaviours:
+            behaviour.sense_and_act()
+        recommendations = self.arbitrator.choose_action()
+        print('Updating motobs')
+        for motob in self.motobs:
+            motob.update(recommendations)
+        if recommendations[-1] == False:
+            print('=== HALTING ===')
+            return True
+        print('=============')
+        print('Step complete')
+        print('=============')
+        return False
             # for sensob in self.sonsobs:
             #     sensob.reset()
+
+    def r(self):
+        wait_for_press()
+        halted = False
+        while not halted:
+            halted = self.one_timestep()
+        print('=== HALTED ===')
+

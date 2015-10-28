@@ -9,7 +9,7 @@ from motob import Motob
 from camultrasob import CamUltra
 from wander import Wander
 from ReflectanceSob import ReflectanceSob
-from zumo_button import Zumobutton
+from zumo_button import ZumoButton
 from haltWhenCrashed import HaltWhenCrashed
 
 __author__ = 'magber'
@@ -50,7 +50,7 @@ class Bbcon:
         print('Updating motobs')
         for motob in self.motobs:
             motob.update(recommendations)
-        if recommendations[-1] == False:
+        if recommendations[-1] == True:
             print('=== HALTING ===')
             return True
         print('=============')
@@ -61,7 +61,7 @@ class Bbcon:
             #     sensob.reset()
 
     def r(self):
-        z = Zumobutton()
+        z = ZumoButton()
         z.wait_for_press()
         halted = False
         while not halted:
